@@ -1,0 +1,32 @@
+package testPackage;
+
+dialect "java"
+
+global String globalString;
+
+rule "Print simple string"
+    salience 10
+    when
+        $str : String ()
+        eval (null == globalString)
+    then
+        System.out.println($str);
+end
+
+rule "Duplicate to Global"
+    salience 5
+    when
+        $str : String ()
+        eval($str.equals(globalString))
+    then
+        globalString = "Global duplicate!";
+        System.out.println(globalString);
+end
+
+rule "remove inserted objects"
+    salience 1
+    when
+        $str : String ()
+    then
+        retract($str);
+end
