@@ -21,7 +21,8 @@ public class InsertNumberCommand extends DefaultCommand {
     @Override
     public void perform(Argument[] arguments, Context context) throws ExtensionException, LogoException {
         KnowledgeRuntime runtime = (KnowledgeRuntime) arguments [ 0 ].get();
-        Object obj = arguments [ 1 ].get();
-        runtime.insert(obj);
+        /* Numbers are always doubles in NetLogo */
+        Double d = arguments [ 1 ].getDoubleValue();
+        runtime.insert(d);
     }
 }
