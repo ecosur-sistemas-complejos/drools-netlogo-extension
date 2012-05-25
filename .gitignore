@@ -1,0 +1,5 @@
+.idea/
+drools-extension.iml
+drools-netlogo-plugin.iml
+src/main/resources/.DS_Store
+src/test/resources/.DS_Store
