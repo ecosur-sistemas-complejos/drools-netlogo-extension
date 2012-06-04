@@ -6,11 +6,11 @@ import org.nlogo.api.*;
 /**
  * Created with IntelliJ IDEA.
  * User: awaterma
- * Date: 5/23/12
- * Time: 3:53 PM
+ * Date: 5/28/12
+ * Time: 10:10 AM
  * To change this template use File | Settings | File Templates.
  */
-public class InsertNumberCommand extends DefaultCommand {
+public class InsertAgentSetCommand extends DefaultCommand {
 
     @Override
     public Syntax getSyntax() {
@@ -20,8 +20,7 @@ public class InsertNumberCommand extends DefaultCommand {
     @Override
     public void perform(Argument[] arguments, Context context) throws ExtensionException, LogoException {
         KnowledgeRuntime runtime = (KnowledgeRuntime) arguments [ 0 ].get();
-        /* Numbers are always doubles in NetLogo */
-        Double d = arguments [ 1 ].getDoubleValue();
-        runtime.insert(d);
+        AgentSet a = arguments [ 1 ].getAgentSet();
+        runtime.insert(a);
     }
 }

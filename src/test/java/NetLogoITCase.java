@@ -26,6 +26,6 @@ public class NetLogoITCase {
                             }
                         }
                     });
-            App.app().command("run-tests");
+            App.app().command("run-unit-tests");
     }
 }

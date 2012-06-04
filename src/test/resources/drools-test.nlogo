@@ -2,10 +2,27 @@ extensions [ drools ]
 
 globals [ kBase ]
 
-to run-tests
+patches-own [ test-field ]
+
+to setup
+  ask patches 
+  [
+  	set test-field 50
+  ]
+end
+
+to run-unit-tests
   test-kb
-  test-cs
+  test-cs "target/integration-tests/rules/test-changeset.xml"
   test-insert
+  test-patch-insert
+end
+
+to run-interactive-tests
+  test-kb
+  test-cs  "rules/test-changeset.xml"
+  test-insert
+  test-patch-insert
 end
 
 to test-kb
@@ -14,8 +31,8 @@ to test-kb
   show kb
 end
 
-to test-cs  
-  set kBase drools:change-set "target/integration-tests/rules/test-changeset.xml"
+to test-cs [file] 
+  set kBase drools:change-set file
   show "test-cs"
   show kBase
 end
@@ -26,7 +43,15 @@ to test-insert
   show "test-insert"
   show test
   drools:insert-string s test
+  drools:fire-rules s
   show test
+end
+
+to test-patch-insert
+  let s drools:stateful-session kBase
+  let ps patches
+  drools:insert-agentset s ps
+  drools:fire-rules s
 end
   
   

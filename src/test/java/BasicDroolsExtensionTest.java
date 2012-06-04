@@ -2,8 +2,6 @@ import mx.ecosur.netlogo.extensions.drools.ChangeSetReporter;
 import mx.ecosur.netlogo.extensions.drools.KnowledgeBaseReporter;
 import mx.ecosur.netlogo.extensions.drools.StatefulSessionReporter;
 import org.drools.KnowledgeBase;
-import org.drools.KnowledgeBaseFactory;
-import org.drools.StatefulSession;
 import org.drools.impl.StatefulKnowledgeSessionImpl;
 import org.drools.runtime.StatefulKnowledgeSession;
 import org.junit.Test;

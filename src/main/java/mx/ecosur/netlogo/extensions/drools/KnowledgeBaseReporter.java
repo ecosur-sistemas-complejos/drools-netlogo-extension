@@ -1,6 +1,5 @@
 package mx.ecosur.netlogo.extensions.drools;
 
-import org.drools.KnowledgeBase;
 import org.drools.KnowledgeBaseFactory;
 import org.nlogo.api.*;
 

@@ -1,20 +1,27 @@
 package testPackage;
 
+import org.nlogo.api.Agent;
+import org.nlogo.api.AgentSet;
+import org.nlogo.api.Color;
+import org.nlogo.agent.Patch;
+
+import function mx.ecosur.netlogo.extensions.drools.helper.APIHelperFunctions.*;
+
 dialect "java"
 
 global String globalString;
 
 rule "Print simple string"
-    salience 10
+	no-loop true
     when
         $str : String ()
         eval (null == globalString)
     then
-        System.out.println($str);
+        $str = "drools";
 end
 
 rule "Duplicate to Global"
-    salience 5
+	no-loop true
     when
         $str : String ()
         eval($str.equals(globalString))
@@ -23,10 +30,30 @@ rule "Duplicate to Global"
         System.out.println(globalString);
 end
 
-rule "remove inserted objects"
-    salience 1
+rule "insert agents from agentset"
     when
-        $str : String ()
+        $aSet : AgentSet()
     then
-        retract($str);
-end
+        for (Agent a : $aSet.agents()) {
+            insert(a);
+        }
+        retract ($aSet);
+    end
+
+    rule "color patches"
+    when
+        $patch : Patch(pcolorDouble == Color.Black)
+    then
+        $patch.pcolorDoubleUnchecked(new Double(77));
+    end
+
+    rule "set test field"
+    when
+        $patch : Patch()
+        eval (GetVariable($patch, "test-field") == null)
+    then
+        SetVariable($patch, "test-field", new Double(22));
+    end
+
+
+

@@ -33,7 +33,11 @@ public class DroolsExtension extends DefaultClassManager {
         primitiveManager.addPrimitive("insert-number", new InsertNumberCommand());
         primitiveManager.addPrimitive("insert-string", new InsertStringCommand());
         primitiveManager.addPrimitive("insert-agent", new InsertAgentCommand());
+        primitiveManager.addPrimitive("insert-agentset", new InsertAgentSetCommand());
         primitiveManager.addPrimitive("insert-turtle", new InsertTurtleCommand());
         primitiveManager.addPrimitive("insert-patch", new InsertPatchCommand());
+        primitiveManager.addPrimitive("insert-link", new InsertLinkCommand());
+        primitiveManager.addPrimitive("insert-list", new InsertListCommand());
+
     }
 }
