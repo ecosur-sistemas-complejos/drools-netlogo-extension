@@ -4,6 +4,8 @@ import org.nlogo.api.Agent;
 import org.nlogo.api.AgentSet;
 import org.nlogo.api.Color;
 import org.nlogo.agent.Patch;
+import org.nlogo.api.Context;
+import java.util.Random;
 
 import function mx.ecosur.netlogo.extensions.drools.helper.APIHelperFunctions.*;
 
@@ -12,7 +14,7 @@ dialect "java"
 global String globalString;
 
 rule "Print simple string"
-	no-loop true
+    no-loop true
     when
         $str : String ()
         eval (null == globalString)
@@ -21,7 +23,7 @@ rule "Print simple string"
 end
 
 rule "Duplicate to Global"
-	no-loop true
+    no-loop true
     when
         $str : String ()
         eval($str.equals(globalString))
@@ -31,6 +33,7 @@ rule "Duplicate to Global"
 end
 
 rule "insert agents from agentset"
+    salience 100
     when
         $aSet : AgentSet()
     then
@@ -38,22 +41,22 @@ rule "insert agents from agentset"
             insert(a);
         }
         retract ($aSet);
-    end
+end
 
-    rule "color patches"
+rule "update some patches"
     when
+        $context : Context()
+        $patch : Patch(pcolorDouble == Color.Black, pxcor > 2, pycor > 2)
+    then
+        $patch.pcolorDoubleUnchecked(new Double(4.23));
+        SetVariable($patch,"test-field", new Double (1.11));
+end
+
+rule "update other patches"
+     when
+        $context : Context()
         $patch : Patch(pcolorDouble == Color.Black)
     then
-        $patch.pcolorDoubleUnchecked(new Double(77));
-    end
-
-    rule "set test field"
-    when
-        $patch : Patch()
-        eval (GetVariable($patch, "test-field") == null)
-    then
-        SetVariable($patch, "test-field", new Double(22));
-    end
-
-
-
+        $patch.pcolorDoubleUnchecked(new Double(48.23));
+        SetVariable($patch,"test-field", new Double (1000.11));
+end

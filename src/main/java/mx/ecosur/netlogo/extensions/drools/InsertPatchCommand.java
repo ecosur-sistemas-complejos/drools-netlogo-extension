@@ -10,7 +10,7 @@ import org.nlogo.api.*;
  * Time: 1:30 PM
  * To change this template use File | Settings | File Templates.
  */
-public class InsertPatchCommand extends DefaultCommand {
+public class InsertPatchCommand extends InsertCommand {
 
     @Override
     public Syntax getSyntax() {
@@ -22,6 +22,7 @@ public class InsertPatchCommand extends DefaultCommand {
         KnowledgeRuntime runtime = (KnowledgeRuntime) arguments [ 0 ].get();
         Patch p = arguments [ 1 ].getPatch();
         runtime.insert(p);
+        insertContextSingleton(runtime, context);
     }
 
 }

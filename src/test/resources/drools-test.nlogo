@@ -5,23 +5,25 @@ globals [ kBase ]
 patches-own [ test-field ]
 
 to setup
+  clear-all
   ask patches 
   [
-  	set test-field 50
+    set test-field 50
   ]
 end
 
 to run-unit-tests
-  test-kb
-  test-cs "target/integration-tests/rules/test-changeset.xml"
-  test-insert
-  test-patch-insert
+  test-with "target/integration-tests/rules/test-changeset.xml"
 end
 
-to run-interactive-tests
+to run-tests
+  test-with "rules/test-changeset.xml"
+end
+
+to test-with [changeset]
+  setup
   test-kb
-  test-cs  "rules/test-changeset.xml"
-  test-insert
+  test-cs changeset
   test-patch-insert
 end
 
@@ -37,16 +39,6 @@ to test-cs [file]
   show kBase
 end
 
-to test-insert
-  let s drools:stateful-session kBase
-  let test "test-string"  
-  show "test-insert"
-  show test
-  drools:insert-string s test
-  drools:fire-rules s
-  show test
-end
-
 to test-patch-insert
   let s drools:stateful-session kBase
   let ps patches
@@ -60,10 +52,10 @@ GRAPHICS-WINDOW
 210
 10
 455
-54
-0
-0
-13.0
+206
+-1
+-1
+7.9
 1
 10
 1
@@ -74,9 +66,9 @@ GRAPHICS-WINDOW
 1
 1
 0
+20
 0
-0
-0
+20
 0
 0
 1

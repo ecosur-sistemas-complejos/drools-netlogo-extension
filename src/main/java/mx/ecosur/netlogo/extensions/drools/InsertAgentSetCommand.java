@@ -10,7 +10,7 @@ import org.nlogo.api.*;
  * Time: 10:10 AM
  * To change this template use File | Settings | File Templates.
  */
-public class InsertAgentSetCommand extends DefaultCommand {
+public class InsertAgentSetCommand extends InsertCommand {
 
     @Override
     public Syntax getSyntax() {
@@ -22,5 +22,6 @@ public class InsertAgentSetCommand extends DefaultCommand {
         KnowledgeRuntime runtime = (KnowledgeRuntime) arguments [ 0 ].get();
         AgentSet a = arguments [ 1 ].getAgentSet();
         runtime.insert(a);
+        insertContextSingleton(runtime, context);
     }
 }

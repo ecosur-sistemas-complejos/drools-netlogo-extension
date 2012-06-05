@@ -10,7 +10,7 @@ import org.nlogo.api.*;
  * Time: 10:12 AM
  * To change this template use File | Settings | File Templates.
  */
-public class InsertLinkCommand extends DefaultCommand {
+public class InsertLinkCommand extends InsertCommand {
     @Override
     public Syntax getSyntax() {
         return Syntax.commandSyntax(new int[] {Syntax.ReadableType(), Syntax.ReadableType()});
@@ -21,5 +21,6 @@ public class InsertLinkCommand extends DefaultCommand {
         KnowledgeRuntime runtime = (KnowledgeRuntime) arguments [ 0 ].get();
         Link l = arguments [ 1 ].getLink();
         runtime.insert(l);
+        insertContextSingleton(runtime, context);
     }
 }

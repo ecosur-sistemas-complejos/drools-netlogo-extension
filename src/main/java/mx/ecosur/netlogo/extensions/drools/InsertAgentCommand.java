@@ -1,6 +1,7 @@
 package mx.ecosur.netlogo.extensions.drools;
 
 import org.drools.runtime.KnowledgeRuntime;
+import org.drools.runtime.rule.FactHandle;
 import org.nlogo.api.*;
 
 /**
@@ -10,7 +11,7 @@ import org.nlogo.api.*;
  * Time: 1:28 PM
  * To change this template use File | Settings | File Templates.
  */
-public class InsertAgentCommand extends DefaultCommand {
+public class InsertAgentCommand extends InsertCommand {
 
     @Override
     public Syntax getSyntax() {
@@ -22,6 +23,8 @@ public class InsertAgentCommand extends DefaultCommand {
         KnowledgeRuntime runtime = (KnowledgeRuntime) arguments [ 0 ].get();
         Agent a = arguments [ 1 ].getAgent();
         runtime.insert(a);
+        /* ensures only the last inserted context is active in working memory */
+        insertContextSingleton(runtime , context);
     }
 
 }

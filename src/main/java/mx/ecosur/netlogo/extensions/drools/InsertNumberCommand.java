@@ -10,7 +10,7 @@ import org.nlogo.api.*;
  * Time: 3:53 PM
  * To change this template use File | Settings | File Templates.
  */
-public class InsertNumberCommand extends DefaultCommand {
+public class InsertNumberCommand extends InsertCommand {
 
     @Override
     public Syntax getSyntax() {
@@ -23,5 +23,6 @@ public class InsertNumberCommand extends DefaultCommand {
         /* Numbers are always doubles in NetLogo */
         Double d = arguments [ 1 ].getDoubleValue();
         runtime.insert(d);
+        insertContextSingleton(runtime, context);
     }
 }
