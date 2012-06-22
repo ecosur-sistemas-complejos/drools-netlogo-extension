@@ -14,8 +14,8 @@ public class StatefulSessionReporter extends DefaultReporter {
 
     @Override
     public Syntax getSyntax() {
-        return Syntax.reporterSyntax(new int[] {Syntax.ReadableType()},
-                Syntax.ReadableType());
+        return Syntax.reporterSyntax(new int[] {Syntax.WildcardType()},
+                Syntax.WildcardType());
     }
 
     @Override

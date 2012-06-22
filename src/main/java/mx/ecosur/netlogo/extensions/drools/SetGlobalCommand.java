@@ -15,7 +15,7 @@ public class SetGlobalCommand extends DefaultCommand {
 
     @Override
     public Syntax getSyntax() {
-        return Syntax.commandSyntax(new int[] {Syntax.ReadableType(), Syntax.StringType(), Syntax.ReadableType()});
+        return Syntax.commandSyntax(new int[] {Syntax.WildcardType(), Syntax.StringType(), Syntax.WildcardType()});
     }
 
     @Override

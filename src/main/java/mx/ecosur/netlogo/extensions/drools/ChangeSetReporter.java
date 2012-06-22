@@ -30,7 +30,7 @@ public class ChangeSetReporter extends DefaultReporter {
 
     @Override
     public Syntax getSyntax() {
-        return Syntax.reporterSyntax(new int[] {Syntax.StringType()}, Syntax.ReadableType());
+        return Syntax.reporterSyntax(new int[] {Syntax.StringType()}, Syntax.WildcardType());
     }
 
     @Override

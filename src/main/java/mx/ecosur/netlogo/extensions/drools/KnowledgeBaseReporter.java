@@ -10,7 +10,7 @@ public class KnowledgeBaseReporter extends DefaultReporter {
 
     @Override
     public Syntax getSyntax() {
-        return Syntax.reporterSyntax(new int[0], Syntax.ReadableType());
+        return Syntax.reporterSyntax(new int[0], Syntax.WildcardType());
     }
 
     @Override

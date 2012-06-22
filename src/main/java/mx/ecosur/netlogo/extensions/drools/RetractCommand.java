@@ -15,7 +15,7 @@ public class RetractCommand extends DefaultCommand {
 
     @Override
     public Syntax getSyntax() {
-        return Syntax.commandSyntax(new int[] {Syntax.ReadableType()});
+        return Syntax.commandSyntax(new int[] {Syntax.WildcardType()});
     }
 
 

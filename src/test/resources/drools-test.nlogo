@@ -41,9 +41,12 @@ end
 
 to test-patch-insert
   let s drools:stateful-session kBase
-  let ps patches
-  drools:insert-agentset s ps
+  drools:insert-agentset s patches
   drools:fire-rules s
+end
+
+to-report update-successful?
+  report not any? patches with [test-field = 50]
 end
   
   

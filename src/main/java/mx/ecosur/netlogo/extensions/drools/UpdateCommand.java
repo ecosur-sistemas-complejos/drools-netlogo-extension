@@ -15,7 +15,7 @@ public class UpdateCommand extends DefaultCommand {
 
     @Override
     public Syntax getSyntax() {
-        return Syntax.commandSyntax(new int[] {Syntax.ReadableType(), Syntax.StringType()});
+        return Syntax.commandSyntax(new int[] {Syntax.WildcardType(), Syntax.StringType()});
     }
 
     @Override

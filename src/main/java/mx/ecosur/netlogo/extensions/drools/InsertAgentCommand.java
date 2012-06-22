@@ -15,7 +15,7 @@ public class InsertAgentCommand extends InsertCommand {
 
     @Override
     public Syntax getSyntax() {
-        return Syntax.commandSyntax(new int[] {Syntax.ReadableType(), Syntax.ReadableType()});
+        return Syntax.commandSyntax(new int[] {Syntax.WildcardType(), Syntax.WildcardType()});
     }
 
     @Override

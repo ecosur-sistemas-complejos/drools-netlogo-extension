@@ -14,7 +14,7 @@ public class InsertTurtleCommand extends InsertCommand {
 
     @Override
     public Syntax getSyntax() {
-        return Syntax.commandSyntax(new int[] {Syntax.ReadableType(), Syntax.ReadableType()});
+        return Syntax.commandSyntax(new int[] {Syntax.AgentType(), Syntax.WildcardType()});
     }
 
     @Override
