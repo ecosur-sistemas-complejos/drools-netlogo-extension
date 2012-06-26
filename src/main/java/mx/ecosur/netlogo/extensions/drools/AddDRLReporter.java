@@ -5,8 +5,9 @@ import org.drools.builder.*;
 import org.drools.io.ResourceFactory;
 import org.nlogo.api.*;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.*;
+import java.io.File;
+import java.net.URISyntaxException;
 
 /**
  * Adds a DRL to the passed in knowledge base and returns
@@ -17,6 +18,19 @@ import java.io.FileNotFoundException;
  * drools:add-drl knowledgeBaseRef "path/to/file.drl"
  */
 public class AddDRLReporter extends DefaultReporter {
+
+    static String topDir;
+
+    static {
+        try {
+            java.io.File jarFile = new java.io.File(
+                    ChangeSetReporter.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
+            topDir = jarFile.getParentFile().getParentFile().getPath();
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
     @Override
     public Syntax getSyntax() {
@@ -32,7 +46,7 @@ public class AddDRLReporter extends DefaultReporter {
         FileInputStream fis = null;
 
         try {
-            fis = new FileInputStream(file);
+            fis = new FileInputStream(topDir + File.separator + file);
         } catch (FileNotFoundException e) {
             throw new ExtensionException(e);
         }

@@ -79,7 +79,7 @@ public class BasicDroolsExtensionTest {
         when(a.get()).thenReturn(kb);
 
         Argument b  = mock(Argument.class);
-        when(b.getString()).thenReturn("target/test-classes/rules/test.drl");
+        when(b.getString()).thenReturn("src/test/resources/rules/test.drl");
 
         AddDRLReporter drlReporter = new AddDRLReporter();
         args = new Argument[] { a, b };
