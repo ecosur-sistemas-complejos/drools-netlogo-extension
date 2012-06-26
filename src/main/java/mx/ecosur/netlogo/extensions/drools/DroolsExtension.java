@@ -13,7 +13,7 @@ import org.nlogo.api.PrimitiveManager;
  * Finally, rules can be fired on said combinations of rules change sets, sessions and
  * facts.
  *
- * @author "Andrew Glenn Waterman" <awaterma@ecosur.mx>
+ * @author "Andrew Glenn Waterman" <awaterma@ecosur.mx>, <andrew.waterman@gmail.com>
  */
 public class DroolsExtension extends DefaultClassManager {
 
@@ -22,6 +22,7 @@ public class DroolsExtension extends DefaultClassManager {
 
         primitiveManager.addPrimitive("knowledge-base", new KnowledgeBaseReporter());
         primitiveManager.addPrimitive("change-set", new ChangeSetReporter());
+        primitiveManager.addPrimitive("add-drl", new AddDRLReporter());
         primitiveManager.addPrimitive("stateful-session", new StatefulSessionReporter());
         primitiveManager.addPrimitive("fire-rules", new FireRulesCommand());
         primitiveManager.addPrimitive("update", new UpdateCommand());

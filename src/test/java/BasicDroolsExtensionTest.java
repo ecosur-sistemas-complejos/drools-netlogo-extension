@@ -1,3 +1,4 @@
+import mx.ecosur.netlogo.extensions.drools.AddDRLReporter;
 import mx.ecosur.netlogo.extensions.drools.ChangeSetReporter;
 import mx.ecosur.netlogo.extensions.drools.KnowledgeBaseReporter;
 import mx.ecosur.netlogo.extensions.drools.StatefulSessionReporter;
@@ -61,5 +62,29 @@ public class BasicDroolsExtensionTest {
         StatefulSessionReporter r = new StatefulSessionReporter();
         StatefulKnowledgeSession session = (StatefulKnowledgeSessionImpl) r.report(args, context);
         assertNotNull(session);
+    }
+
+    @Test
+    public void testAddDRLReporter() throws ExtensionException, LogoException {
+        Argument a = mock(Argument.class);
+        Argument[] args = new Argument[] { a };
+
+        KnowledgeBaseReporter r = new KnowledgeBaseReporter();
+        KnowledgeBase kb = (KnowledgeBase) r.report(args,mock(Context.class));
+
+        assertNotNull(kb);
+        assertTrue(kb instanceof KnowledgeBase);
+
+        a = mock(Argument.class);
+        when(a.get()).thenReturn(kb);
+
+        Argument b  = mock(Argument.class);
+        when(b.getString()).thenReturn("target/test-classes/rules/test.drl");
+
+        AddDRLReporter drlReporter = new AddDRLReporter();
+        args = new Argument[] { a, b };
+        KnowledgeBase test = (KnowledgeBase) drlReporter.report(args,mock(Context.class));
+        assertNotNull(test);
+        assertTrue(test.getKnowledgePackages().size() == 1);
     }
 }
